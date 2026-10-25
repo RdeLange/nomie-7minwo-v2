@@ -11,9 +11,9 @@ const routine = [37, REST_ID, 44];
 
 describe('the catalogue', () => {
   it('has the workouts and the programs of v1, with the same ids', () => {
-    expect(WORKOUTS.length).toBe(47);
-    // the last three are the new drawings, which are not in a book routine yet
-    expect(WORKOUTS.filter((w) => w.id >= 52).map((w) => w.woname)).toEqual(['highknees', 'glutebridge', 'russiantwist']);
+    expect(WORKOUTS.length).toBe(50);
+    // the last six are the new drawings, which are only in the bonus routines
+    expect(WORKOUTS.filter((w) => w.id >= 52).map((w) => w.woname)).toEqual(['highknees', 'glutebridge', 'russiantwist', 'donkeykicks', 'deadbug', 'bearcrawl']);
     expect(PROGRAMS.length).toBe(50);
     expect(workoutById(37).woname).toBe('pushups');
   });
@@ -159,5 +159,26 @@ describe('the settings', () => {
     expect(settings.colours.flesh).toBe(DEFAULT_SETTINGS.colours.flesh);
     expect(settings.tracker).toBeNull();
     expect(settings.sound).toBe(true);
+  });
+});
+
+describe('the bonus routines', () => {
+  it('are left out of a session unless the setting is on', () => {
+    const bonusIds = new Set([52, 53, 54, 55, 56, 57]);
+    const off = buildRoutine('full', 1, () => 0, false);
+    expect(off.some((id) => bonusIds.has(id))).toBe(false);
+    const on = programsFor('full', true);
+    expect(on.some((p) => p.id >= 1000)).toBe(true);
+    const lowerOn = programsFor('lower', true);
+    const routine = buildRoutine('lower', 1, () => lowerOn.length - 1, true);
+    expect(routine.filter((id) => id !== REST_ID).every((id) => bonusIds.has(id))).toBe(true);
+  });
+
+  it('a bonus routine is in the same shape as a book routine: exercise, rest, exercise, ...', () => {
+    const bonus = programsFor('core', true).filter((p) => p.id >= 1000);
+    for (const p of bonus) {
+      expect(p.routine.length % 2).toBe(1);
+      expect(p.routine.filter((_, i) => i % 2 === 1).every((id) => id === REST_ID)).toBe(true);
+    }
   });
 });
