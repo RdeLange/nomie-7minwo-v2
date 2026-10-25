@@ -11,9 +11,21 @@ const routine = [37, REST_ID, 44];
 
 describe('the catalogue', () => {
   it('has the workouts and the programs of v1, with the same ids', () => {
-    expect(WORKOUTS.length).toBe(50);
-    // the last six are the new drawings, which are only in the bonus routines
-    expect(WORKOUTS.filter((w) => w.id >= 52).map((w) => w.woname)).toEqual(['highknees', 'glutebridge', 'russiantwist', 'donkeykicks', 'deadbug', 'bearcrawl']);
+    expect(WORKOUTS.length).toBe(55);
+    // the last eleven are the new drawings, which are only in the bonus routines
+    expect(WORKOUTS.filter((w) => w.id >= 52).map((w) => w.woname)).toEqual([
+      'highknees',
+      'glutebridge',
+      'russiantwist',
+      'donkeykicks',
+      'deadbug',
+      'bearcrawl',
+      'inchworm',
+      'calfraises',
+      'wallsit',
+      'birddog',
+      'flutterkicks',
+    ]);
     expect(PROGRAMS.length).toBe(50);
     expect(workoutById(37).woname).toBe('pushups');
   });
@@ -164,7 +176,7 @@ describe('the settings', () => {
 
 describe('the bonus routines', () => {
   it('are left out of a session unless the setting is on', () => {
-    const bonusIds = new Set([52, 53, 54, 55, 56, 57]);
+    const bonusIds = new Set([52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62]);
     const off = buildRoutine('full', 1, () => 0, false);
     expect(off.some((id) => bonusIds.has(id))).toBe(false);
     const on = programsFor('full', true);
