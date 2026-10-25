@@ -2,7 +2,6 @@
 // (the book by Brett Klika, the animations from Barebone by Bumhan Yu).
 import workoutsJson from './workouts.json';
 import programsJson from './programs.json';
-import bonusJson from './bonus-programs.json';
 
 export type Direction = 'left' | 'right';
 export type Target = 'full' | 'upper' | 'lower' | 'core';
@@ -29,8 +28,6 @@ export const REST_SECONDS = 10;
 
 export const WORKOUTS: Workout[] = workoutsJson as Workout[];
 export const PROGRAMS: Program[] = programsJson as Program[];
-// The bonus routines use the exercises that are not in the book. They are only part of a session when the setting is on.
-export const BONUS_PROGRAMS: Program[] = bonusJson as Program[];
 
 export const TARGETS: Array<{ id: Target; label: string }> = [
   { id: 'full', label: 'Full body' },

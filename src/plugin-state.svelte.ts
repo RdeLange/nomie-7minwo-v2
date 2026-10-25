@@ -3,7 +3,7 @@ import { DURATIONS, type Target } from './data/catalogue';
 import { playCue, unlockAudio } from './audio';
 import { sessionNote } from './log';
 import { addEntry, normaliseHistory, type Entry } from './history';
-import { buildRoutine, randomInt } from './session/program';
+import { buildRoutine } from './session/program';
 import { WorkoutSession, type Position } from './session/session';
 import { DEFAULT_SETTINGS, normaliseSettings, type Settings } from './settings';
 
@@ -68,7 +68,7 @@ class AppState {
   // Starts a session of the chosen length and target. The routine is picked now and stays the same for the session.
   start(): void {
     unlockAudio();
-    const routine = buildRoutine(this.target, DURATIONS[this.durationIndex].programs, randomInt, this.settings.bonusRoutines);
+    const routine = buildRoutine(this.target, DURATIONS[this.durationIndex].programs);
     this.session = new WorkoutSession(routine);
     this.summary = null;
     this.logged = false;

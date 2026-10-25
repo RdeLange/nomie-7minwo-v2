@@ -9,8 +9,6 @@ export type Settings = {
   logEntry: string;
   // ask before the session is written to the timeline
   askBeforeLog: boolean;
-  // the bonus routines, with the exercises that are not in the book, are part of the sessions
-  bonusRoutines: boolean;
   // beeps when an exercise changes and in the last seconds of an exercise
   sound: boolean;
 };
@@ -22,7 +20,6 @@ export const DEFAULT_SETTINGS: Settings = {
   tracker: null,
   logEntry: 'Just finished <7minswo> exercise taking <duration> minutes.',
   askBeforeLog: true,
-  bonusRoutines: false,
   sound: true,
 };
 
@@ -42,6 +39,5 @@ export const normaliseSettings = (saved: any): Settings => {
     logEntry: typeof saved?.logEntry === 'string' ? saved.logEntry : DEFAULT_SETTINGS.logEntry,
     askBeforeLog: typeof saved?.askBeforeLog === 'boolean' ? saved.askBeforeLog : true,
     sound: typeof saved?.sound === 'boolean' ? saved.sound : true,
-    bonusRoutines: typeof saved?.bonusRoutines === 'boolean' ? saved.bonusRoutines : false,
   };
 };

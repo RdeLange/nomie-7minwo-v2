@@ -83,14 +83,6 @@
 </section>
 
 <section class="card">
-  <div class="row">
-    <span>Bonus routines</span>
-    <button class="toggle" class:on={app.settings.bonusRoutines} aria-pressed={app.settings.bonusRoutines} aria-label="Bonus routines" onclick={() => update({ bonusRoutines: !app.settings.bonusRoutines })}></button>
-  </div>
-  <p class="hint">Add routines with exercises that are not in the book, for full body, lower body and core. They are picked along with the book's routines when you start a workout.</p>
-</section>
-
-<section class="card">
   <p class="muted">{app.history.length} sessions in your history.</p>
   <button class="link danger" onclick={() => app.clearHistory()}>Clear the history</button>
 </section>
