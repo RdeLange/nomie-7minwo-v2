@@ -11,7 +11,9 @@ const routine = [37, REST_ID, 44];
 
 describe('the catalogue', () => {
   it('has the workouts and the programs of v1, with the same ids', () => {
-    expect(WORKOUTS.length).toBe(44);
+    expect(WORKOUTS.length).toBe(47);
+    // the last three are the new drawings, which are not in a book routine yet
+    expect(WORKOUTS.filter((w) => w.id >= 52).map((w) => w.woname)).toEqual(['highknees', 'glutebridge', 'russiantwist']);
     expect(PROGRAMS.length).toBe(50);
     expect(workoutById(37).woname).toBe('pushups');
   });
