@@ -7,8 +7,9 @@
   import Session from './screens/session.svelte';
   import Settings from './screens/settings.svelte';
   import Info from './screens/info.svelte';
+  import Preview from './screens/preview.svelte';
 
-  let view = $state<'start' | 'settings' | 'info'>('start');
+  let view = $state<'start' | 'settings' | 'info' | 'preview'>('start');
   let palette = $state<Palette>(paletteFrom(undefined));
   let scale = $state(1);
 
@@ -53,6 +54,7 @@
     </div>
     {#if !inSession}
       <div class="icons">
+        <button aria-label="Preview the workouts" onclick={() => (view = 'preview')}>▶︎</button>
         <button aria-label="Settings" onclick={() => (view = 'settings')}>⚙︎</button>
         <button aria-label="About" onclick={() => (view = 'info')}>ⓘ</button>
       </div>
@@ -67,6 +69,8 @@
     <Settings back={() => (view = 'start')} />
   {:else if view === 'info'}
     <Info back={() => (view = 'start')} />
+  {:else if view === 'preview'}
+    <Preview back={() => (view = 'start')} />
   {:else}
     <Start />
   {/if}
