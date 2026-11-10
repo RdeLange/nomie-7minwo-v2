@@ -1,3 +1,4 @@
+import { t } from '../i18n/index.svelte';
 // The workouts, the programs, and the choices of the start screen. The data is the one of My 7 Minute Workout v1
 // (the book by Brett Klika, the animations from Barebone by Bumhan Yu).
 import workoutsJson from './workouts.json';
@@ -30,18 +31,18 @@ export const WORKOUTS: Workout[] = workoutsJson as Workout[];
 export const PROGRAMS: Program[] = programsJson as Program[];
 
 export const TARGETS: Array<{ id: Target; label: string }> = [
-  { id: 'full', label: 'Full body' },
-  { id: 'upper', label: 'Upper body' },
-  { id: 'lower', label: 'Lower body' },
-  { id: 'core', label: 'Core' },
+  { id: 'full', get label() { return t('targetFull'); } },
+  { id: 'upper', get label() { return t('targetUpper'); } },
+  { id: 'lower', get label() { return t('targetLower'); } },
+  { id: 'core', get label() { return t('targetCore'); } },
 ];
 
 // The length of the session: how many programs are put together. One program lasts 6 min 30 s.
 export const DURATIONS: Array<{ programs: number; label: string }> = [
-  { programs: 1, label: '7 min' },
-  { programs: 2, label: '14 min' },
-  { programs: 3, label: '21 min' },
-  { programs: 4, label: '28 min' },
+  { programs: 1, get label() { return t('dur1'); } },
+  { programs: 2, get label() { return t('dur2'); } },
+  { programs: 3, get label() { return t('dur3'); } },
+  { programs: 4, get label() { return t('dur4'); } },
 ];
 
 export const workoutById = (id: number): Workout => WORKOUTS.find((w) => w.id === id) ?? WORKOUTS.find((w) => w.id === FALLBACK_ID)!;

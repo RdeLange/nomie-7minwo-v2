@@ -1,6 +1,8 @@
 // The note a finished session writes to the timeline, and the text it uses. v1 replaced <duration> and <7minswo> in the text.
 import type { Settings } from './settings';
 import { TARGETS, type Target } from './data/catalogue';
+import { EN_LOG_ENTRY } from './settings';
+import { t } from './i18n/index.svelte';
 
 export type Finished = {
   // the minutes that were worked out (the length of the session as it was run)
@@ -19,5 +21,6 @@ export const logText = (entry: string, finished: Finished): string =>
 // The note for the timeline: the heading, the log text and, when a tracker is chosen, its value in seconds
 export const sessionNote = (settings: Settings, finished: Finished): string => {
   const trackerLine = settings.tracker ? `#${settings.tracker}(${Math.round(finished.minutes * 60)})\n` : '';
-  return `7 Minute Workout 💪:\n${logText(settings.logEntry, finished)}\n\n${trackerLine}`;
+  const template = settings.logEntry === EN_LOG_ENTRY ? t('defaultLogEntry') : settings.logEntry;
+  return `${t('noteHead')}:\n${logText(template, finished)}\n\n${trackerLine}`;
 };
