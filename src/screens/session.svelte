@@ -88,7 +88,7 @@
   .card { padding: 14px 16px; border-radius: 16px; background: var(--card); margin: 8px 0; }
   .head { display: flex; align-items: center; justify-content: space-between; }
   .caption { margin: 0; font-size: calc(13px * var(--scale)); font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
-  .big { margin: 2px 0 0; font-size: calc(30px * var(--scale)); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .big { margin: 2px 0 0; font-family: var(--ios-font-rounded); font-size: calc(30px * var(--scale)); font-weight: 700; font-variant-numeric: tabular-nums; }
   .muted { margin: 4px 0; color: var(--muted); }
   .pill { padding: 4px 10px; border-radius: 999px; background: var(--fill); color: var(--text); font-size: calc(13px * var(--scale)); font-weight: 600; }
   .bar { height: 6px; border-radius: 3px; background: var(--fill); overflow: hidden; margin: 4px 0 12px; }
@@ -96,7 +96,7 @@
   .fill { height: 100%; background: var(--tint); transition: width 0.2s linear; }
   .stage { display: flex; flex-direction: column; align-items: center; text-align: center; }
   .name { margin: 4px 0 0; font-size: calc(22px * var(--scale)); font-weight: 700; }
-  .exercise-time { margin: 6px 0 0; font-size: calc(40px * var(--scale)); font-weight: 700; font-variant-numeric: tabular-nums; }
+  .exercise-time { margin: 6px 0 0; font-family: var(--ios-font-rounded); font-size: calc(40px * var(--scale)); font-weight: 700; font-variant-numeric: tabular-nums; }
   .controls { display: flex; gap: 10px; margin-top: 14px; }
   .controls button { flex: 1; padding: 12px 0; border: 0; border-radius: 14px; background: var(--fill); color: var(--text); font: inherit; font-size: calc(18px * var(--scale)); cursor: pointer; }
   .controls button.main { flex: 2; background: var(--tint); color: var(--on-tint); font-weight: 600; font-size: calc(17px * var(--scale)); }
